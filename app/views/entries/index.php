@@ -35,11 +35,13 @@
 		<td><?= $e->description ?></td>
 		<td><?= App::get()->assembla->getSpaceName($e->space_id) ?></td>
 		<td style="width:30%"><?
-			if ($t = App::get()->assembla->getTicket($e->space_id, $e->ticket_id)) {
+			if (!$e->ticket_id) echo '';
+			else if ($t = App::get()->assembla->getTicket($e->space_id, $e->ticket_id)) {
 				echo '<a href="https://www.assembla.com'.$e->ticket_url.'">'
 					.htmlspecialchars($t->number.' ('.$t->status_name.')')
 					.'</a> '.htmlspecialchars($t->summary);
-			} else echo 'No ticket';
+			} else if ($e->ticket_url) echo '<a href="https://www.assembla.com'.$e->ticket_url.'">Inactive ticket</a>';
+			else echo 'Unknown ticket';
 		?></td>
 		<td><?= $e->hours ?></td>
 		<td><?= date('n/j g:i a', strtotime($e->begin_at)).' - '.date('g:i a', strtotime($e->end_at)) ?></td>
