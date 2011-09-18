@@ -38,17 +38,19 @@ class AssemblaModel {
 			$tickets = $my_tickets + $tickets;
 		}
 
-		foreach ($tickets as $aid => $x) usort($x->tickets, function($a, $b) {
-			if ($a->status_name == $b->status_name) {
-				if ($a->number == $b->number) return 0;
-				return ($a->number > $b->number)? 1 : -1;
-			}
-			return ($a->status_name > $b->status_name)? 1 : -1;
-		});
+		foreach ($tickets as $aid => $x) usort($x->tickets, array(self, 'cmpTickets'));
 
 		$all_tickets[$space_id] = $tickets;
 		App::get()->session->set('tickets', $all_tickets);
 		return $tickets;
+	}
+
+	private function cmpTickets($a, $b) {
+		if ($a->status_name == $b->status_name) {
+			if ($a->number == $b->number) return 0;
+			return ($a->number > $b->number)? 1 : -1;
+		}
+		return ($a->status_name > $b->status_name)? 1 : -1;
 	}
 
 	function loadSpaces() {
