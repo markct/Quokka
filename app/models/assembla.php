@@ -38,7 +38,7 @@ class AssemblaModel {
 			$tickets = $my_tickets + $tickets;
 		}
 
-		foreach ($tickets as $aid => $x) usort($x->tickets, array(self, 'cmpTickets'));
+		foreach ($tickets as $aid => $x) usort($x->tickets, array('self', 'cmpTickets'));
 
 		$all_tickets[$space_id] = $tickets;
 		App::get()->session->set('tickets', $all_tickets);
@@ -105,11 +105,13 @@ class AssemblaModel {
 				'ticket_url' => (string)@$t->{'url'},
 				);
 		}
-		usort($entries, function($a, $b) {
-			if ($a->begin_at == $b->begin_at) return 0;
-			return ($a->begin_at > $b->begin_at)? -1 : 1;
-		});
+		usort($entries, array('self', 'cmpEntries'));
 		return $entries;
+	}
+
+	private function cmpEntries($a, $b) {
+		if ($a->begin_at == $b->begin_at) return 0;
+		return ($a->begin_at > $b->begin_at)? -1 : 1;
 	}
 
 	function req($uri, $data=false, $method=false) {
