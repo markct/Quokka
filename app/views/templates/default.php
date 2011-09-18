@@ -2,6 +2,8 @@
 <html><head>
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 	<title><?= @$title? strip_tags($title).' - ' : '' ?>Quokka</title>
+	<link rel="icon" href="<?= App::get()->url('favicon.ico') ?>" type="image/x-icon">
+	<link rel="shortcut icon" href="<?= App::get()->url('favicon.ico') ?>" type="image/x-icon">
 	<link rel="stylesheet" href="<?= App::get()->url('skin/main.css').'?'.@filemtime('skin/main.css') ?>" type="text/css" media="screen" charset="utf-8">
 	<script type="text/javascript">
 		var root_url = <?= json_encode(App::get()->root_url) ?>;
