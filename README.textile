@@ -1,0 +1,3 @@
+Quokka is an alternative way to track time on "Assembla":http://www.assembla.com
+
+To use it, put it somewhere in your web root, then copy app/config-example.php to app/config.php and edit it.

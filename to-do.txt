@@ -1,0 +1,2 @@
+When ticket isn't loaded, show "old ticket" instead of "no ticket", or fetch it
+Time zone awareness
