@@ -161,7 +161,7 @@ class AssemblaModel {
 				$node_name = $content[0];
 				unset($content[0]);
 			}
-			foreach ($content as $k => $v) $c .= self::createXML($k, $v);
+			foreach ($content as $k => $v) $c .= self::createXML($v, $k);
 		}
 		else if (is_bool($content)) $c = $content? 'true' : 'false';
 		else $c = htmlspecialchars($content);
