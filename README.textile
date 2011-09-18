@@ -10,7 +10,6 @@ Server requirements:
 
 Current to-do list:
 # Show only time entries for the past 2 weeks; waiting on response to "this support ticket":https://www.assembla.com/spaces/AssemblaSupport/support/tickets/1838
-# Time zone awareness
 # Improve aesthetics
 # Show proper error messages for login and time entry save failures
 # Turn tickets dropdown into an autocomplete combo

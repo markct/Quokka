@@ -22,7 +22,7 @@ class App {
 	}
 
 	function start() {
-		date_default_timezone_set('America/New_York');
+		date_default_timezone_set('UTC');
 
 		// load basic components
 		$this->load_model('config');

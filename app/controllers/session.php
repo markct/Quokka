@@ -8,9 +8,7 @@ class SessionController {
 
 	function create() {
 		$app = App::get();
-		if (($l = @$_POST['login']) && $app->auth->authenticate($l, @$_POST['password'])) {
-			$app->redirect('entries');
-		}
+		if ($app->auth->authenticate($_POST)) $app->redirect('entries');
 		$app->load_view('session/create', array(
 			'title' => 'Log In',
 			));
