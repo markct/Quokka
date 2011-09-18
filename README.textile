@@ -6,9 +6,9 @@ To use it, put it somewhere in your web root, then:
 
 Current to-do list:
 # Show only time entries for the past 2 weeks; waiting on response to "this support ticket":https://www.assembla.com/spaces/AssemblaSupport/support/tickets/1838
-# Do a real authentication check
 # Encrypt user/pass in session storage
 # When ticket isn't loaded, show "old ticket" instead of "no ticket", or fetch it
 # Time zone awareness
 # Improve aesthetics
+# Show proper error messages for login and time entry save failures
 # Turn tickets dropdown into an autocomplete combo

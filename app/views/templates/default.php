@@ -14,7 +14,7 @@
 	<div class="header">
 		<div>
 		<? if ($user_info = App::get()->auth->info()): ?>
-			Logged in as <?= $user_info->login ?>
+			Logged in as <?= $user_info->name ?>
 			<a href="<?= App::get()->url('session/destroy') ?>">Log Out</a>
 		<? endif ?>
 		</div>

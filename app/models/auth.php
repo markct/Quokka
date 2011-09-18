@@ -12,12 +12,25 @@ class AuthModel {
 	}
 
 	function authenticate($login, $password) {
-		App::get()->session->clear();
+		$app = App::get();
+		$app->session->clear();
 		$this->info = (object)array(
 			'login' => $login,
 			'password' => $password,
 			);
-		App::get()->session->set_encrypted('auth_info', $this->info);
+		$r = $app->assembla->req('user/best_profile');
+		if ($r->status != 200 || @$r->response->login != $login) {
+			$this->info = null;
+			return false;
+		}
+		$this->info = (object)array(
+			'id' => (string)@$r->response->id,
+			'login' => (string)@$r->response->login,
+			'name' => (string)@$r->response->name,
+			'email' => (string)@$r->response->email,
+			'password' => $password,
+			);
+		$app->session->set_encrypted('auth_info', $this->info);
 		return true;
 	}
 
