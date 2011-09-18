@@ -22,7 +22,13 @@ class SessionModel {
 	}
 
 	function get_encrypted($key) {
-		return array_key_exists($key, $_SESSION)? $_SESSION[$key] : null;
+		if (!array_key_exists($key, $_SESSION)) return null;
+
+		$value = mcrypt_decrypt(MCRYPT_RIJNDAEL_256, substr(App::get()->config->get('encryption_key'), 0, 32), $_SESSION[$key], MCRYPT_MODE_ECB);
+
+		$block = mcrypt_get_block_size('des', 'ecb');
+		$pad = ord($value[($len = strlen($value)) - 1]);
+		return @unserialize(substr($value, 0, strlen($value) - $pad));
 	}
 	
 	function set($key, $value) {
@@ -30,7 +36,12 @@ class SessionModel {
 	}
 
 	function set_encrypted($key, $value) {
-		$_SESSION[$key] = $value;
+		$value = serialize($value);
+		$block = mcrypt_get_block_size('des', 'ecb');
+		$pad = $block - (strlen($value) % $block);
+		$value .= str_repeat(chr($pad), $pad);
+
+		$_SESSION[$key] = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, substr(App::get()->config->get('encryption_key'), 0, 32), $value, MCRYPT_MODE_ECB);
 	}
 
 	function clear() {

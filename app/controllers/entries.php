@@ -19,7 +19,7 @@ class EntriesController {
 				'begin_at' => date('r', $begin),
 				'end_at' => date('r', $end),
 				));
-			if ($r->status == 201) App::get()->redirect('entries/index');
+			if ($r->status == 201) App::get()->redirect('entries');
 			else die('Request failed.<pre>'.print_r($r,1).'</pre>');
 		}
 

@@ -4,9 +4,12 @@ To use it, put it somewhere in your web root, then:
 # Copy .htaccess-example to .htaccess and edit it.
 # Copy app/config-example.php to app/config.php and edit it.
 
+Server requirements:
+* Apache with mod_rewrite
+* PHP 5.2.17 with mcrypt
+
 Current to-do list:
 # Show only time entries for the past 2 weeks; waiting on response to "this support ticket":https://www.assembla.com/spaces/AssemblaSupport/support/tickets/1838
-# Encrypt user/pass in session storage
 # When ticket isn't loaded, show "old ticket" instead of "no ticket", or fetch it
 # Time zone awareness
 # Improve aesthetics
