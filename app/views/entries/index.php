@@ -29,7 +29,7 @@
 	</div>
 </form>
 
-<table><tbody>
+<table class="entries"><tbody>
 <? foreach($entries as $e): ?>
 	<tr>
 		<td><?= $e->description ?></td>

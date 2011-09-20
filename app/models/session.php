@@ -12,6 +12,8 @@ class SessionModel {
 		ini_set('session.use_cookies', 1);
 		ini_set('session.use_only_cookies', 1);
 		ini_set('session.cookie_secure', 1);
+		ini_set('session.gc_maxlifetime', 2629800); // about a month
+		if ($path = App::get()->config->get('session.save_path')) ini_set('session.save_path', $path);
 		session_name('timely');
 		session_set_cookie_params(0, App::get()->root_url);
 		session_start();
@@ -24,7 +26,7 @@ class SessionModel {
 	function get_encrypted($key) {
 		if (!array_key_exists($key, $_SESSION)) return null;
 
-		$value = mcrypt_decrypt(MCRYPT_RIJNDAEL_256, substr(App::get()->config->get('encryption_key'), 0, 32), $_SESSION[$key], MCRYPT_MODE_ECB);
+		$value = mcrypt_decrypt(MCRYPT_RIJNDAEL_256, substr(App::get()->config->get('session.encryption_key'), 0, 32), $_SESSION[$key], MCRYPT_MODE_ECB);
 
 		$block = mcrypt_get_block_size('des', 'ecb');
 		$pad = ord($value[($len = strlen($value)) - 1]);
@@ -41,7 +43,7 @@ class SessionModel {
 		$pad = $block - (strlen($value) % $block);
 		$value .= str_repeat(chr($pad), $pad);
 
-		$_SESSION[$key] = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, substr(App::get()->config->get('encryption_key'), 0, 32), $value, MCRYPT_MODE_ECB);
+		$_SESSION[$key] = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, substr(App::get()->config->get('session.encryption_key'), 0, 32), $value, MCRYPT_MODE_ECB);
 	}
 
 	function clear() {
