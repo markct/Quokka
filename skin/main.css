@@ -3,8 +3,14 @@ body, td {
 	font-family: Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
 }
 
+#ff_date {
+	width: 7em;
+}
 #ff_begin, #ff_end {
 	width: 5.5em;
+}
+#ff_description {
+	width: 20em;
 }
 
 table.entries {

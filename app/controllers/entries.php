@@ -8,7 +8,7 @@ class EntriesController {
 			$end = strtotime(@$_POST['date'].' '.@$_POST['end']);
 			App::get()->session->set('state', array(
 				'space_id' => @$_POST['space_id'],
-				'date' => date('F j, Y', $end),
+				'date' => date('M j Y', $end),
 				'begin' => date('g:i a', $end),
 				));
 			$r = App::get()->assembla->req('user/time_entries', array('task',
@@ -27,7 +27,7 @@ class EntriesController {
 		if (!is_array($state)) $state = array();
 		$state += array(
 			'space_id' => '',
-			'date' => date('F j, Y'),
+			'date' => date('M j Y'),
 			'begin' => '',
 			'end' => '',
 			'description' => '',

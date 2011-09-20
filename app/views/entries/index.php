@@ -1,6 +1,6 @@
 <form class="time_entry_form" method="post">
 	<div>
-		<select name="space_id" id="ff_spaces">
+		<select name="space_id" id="ff_space_id">
 			<option value="">-- space --</option>
 		<? foreach(App::get()->assembla->loadSpaces() as $v => $l): ?>
 			<option value="<?= htmlspecialchars($v) ?>"<?= $v==$state['space_id']? ' selected="selected"' : '' ?>><?= htmlspecialchars($l) ?></option>
@@ -14,15 +14,15 @@
 		<label for="ff_date">Date:</label>
 		<input name="date" id="ff_date" type="text" value="<?= htmlspecialchars($state['date']) ?>" />
 
-		<label for="ff_begin">Begin:</label>
+		&nbsp; <label for="ff_begin">Begin:</label>
 		<input name="begin" id="ff_begin" type="text" value="<?= htmlspecialchars($state['begin']) ?>" />
-		<a href="#" onclick="jQuery('#ff_begin').val(Entries.getNow()).change();return false">now</a>
+		<a href="#" onclick="Entries.setNow('#ff_date','#ff_begin');return false">now</a>
 
-		<label for="ff_end">End:</label>
+		&nbsp; <label for="ff_end">End:</label>
 		<input name="end" id="ff_end" type="text" value="<?= htmlspecialchars($state['end']) ?>" />
-		<a href="#" onclick="jQuery('#ff_end').val(Entries.getNow()).change();return false">now</a>
+		<a href="#" onclick="Entries.setNow('#ff_date','#ff_end');return false">now</a>
 
-		<label for="ff_description">Description:</label>
+		&nbsp; <label for="ff_description">Note:</label>
 		<input name="description" id="ff_description" type="text" value="<?= htmlspecialchars($state['description']) ?>" />
 
 		<input type="submit" value="Save" />
