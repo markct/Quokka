@@ -1,3 +1,17 @@
+body, td {
+	font-size: 95%;
+	font-family: Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+}
+
 #ff_begin, #ff_end {
 	width: 5.5em;
+}
+
+table.entries {
+	border-collapse: collapse;
+}
+table.entries td {
+	border: 1px solid #eee;
+	border-left: none;
+	border-right: none;
 }
