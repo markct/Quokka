@@ -44,11 +44,10 @@ var Entries = {
 	getNow: function() {
 		var d = new Date(),
 			h = d.getHours(),
-			m = d.getMinutes(),
-			pm = h > 12;
+			m = d.getMinutes();
 		return {
 			date: d.toDateString().substring(4),
-			time: (pm? h-12 : h) + ':' + (m<10? '0'+m : m) + ' ' + (pm? 'pm' : 'am')
+			time: (h > 12? h-12 : h) + ':' + (m<10? '0'+m : m) + ' ' + (h > 11? 'pm' : 'am')
 		};
 	}
 };
